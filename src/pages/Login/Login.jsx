@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import img from '../../assets/images/login/login.svg';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
 
@@ -17,11 +18,15 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+
         signIn(email, password)
         .then(result => {
             const user = result.user;
-            console.log(user);
+            
+            console.log(loggedUser);
+
             navigate(from, {replace: true})
+           
         })
         .catch(error => console.log(error))
     }
@@ -56,6 +61,7 @@ const Login = () => {
                         </div>
                         </form>
                         <p className='my-4 text-center' >New to Car Doctors <Link className='text-orange-600 font-bold' to='/signup'>Sign Up</Link></p>
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>
